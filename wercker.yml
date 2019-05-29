@@ -104,10 +104,14 @@ build-app:
         image-name: osbatp
     - internal/docker-push:
         image-name: osbatp
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
-        repository: $DOCKER_REPO
-        registry: $DOCKER_REGISTRY
+        azure-client-id: $AZURE_CLIENT_ID
+        azure-client-secret: $AZURE_CLIENT_SECRET
+        azure-subscription-id: $AZURE_SUBSCRIPTION_ID
+        azure-tenant-id: $AZURE_TENANT_ID
+        azure-resource-group: $AZURE_RESOURCE_GROUP
+        azure-registry-name: $AZURE_REGISTRY_NAME
+        azure-login-server: $AZURE_LOGIN_SERVER
+        repository: $REPO_NAME
         tag: latest, $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
         ports: 8080
         env: LD_LIBRARY_PATH=/opt/oracle/instantclient_19_3 TNS_ADMIN=/reward/Wallet_ATPDemoDB WALLET_LOCATION=/reward/Wallet_ATPDemoDB
