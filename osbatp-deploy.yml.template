@@ -31,6 +31,8 @@ spec:
         image: ${AZURE_LOGIN_SERVER}/${REPO_NAME}:$WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
         ports:
         - containerPort: 80
+      imagePullSecrets:
+        - name: acr-auth
         env:
         # Pass DB ADMIN user name that is part of the secret created by the binding request.
         - name: DB_ADMIN_USER
