@@ -29,7 +29,6 @@ spec:
       # User application that uses credential files to connect to ATP.
       - name: db-app
         image: ${AZURE_LOGIN_SERVER}/${REPO_NAME}:$WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
-        imagePullPolicy: Always
         ports:
         - name: db-app
           containerPort: 80
@@ -67,5 +66,3 @@ spec:
       # Shared Volume in which initContainer will save the decoded credential files and the db-app container reads.
       - name: creds
         emptyDir: {}
-      imagePullSecrets:
-        - name: acr-auth
