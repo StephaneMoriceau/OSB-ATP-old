@@ -66,3 +66,5 @@ spec:
       # Shared Volume in which initContainer will save the decoded credential files and the db-app container reads.
       - name: creds
         emptyDir: {}
+      imagePullSecrets:
+        - name: acr-auth
