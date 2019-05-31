@@ -31,7 +31,8 @@ spec:
         image: ${AZURE_LOGIN_SERVER}/${REPO_NAME}:$WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - name: db-app
+          containerPort: 80
         env:
         # Pass DB ADMIN user name that is part of the secret created by the binding request.
         - name: DB_ADMIN_USER
@@ -58,8 +59,6 @@ spec:
         volumeMounts:
         - name: creds
           mountPath: /db-demo/creds
-      imagePullSecrets:
-        - name: acr-auth
       volumes:
       # Volume for mouting the credentials file from Secret created by binding request.
       - name: creds-raw
@@ -68,3 +67,5 @@ spec:
       # Shared Volume in which initContainer will save the decoded credential files and the db-app container reads.
       - name: creds
         emptyDir: {}
+      imagePullSecrets:
+        - name: acr-auth
